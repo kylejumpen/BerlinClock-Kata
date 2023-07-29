@@ -33,4 +33,8 @@ public class ClockHelper {
             minutesRow.append("O");
         return minutesRow.toString();
     }
+
+    public String getTheSingleHoursRow(LocalTime time) {
+        return null;
+    }
 }
