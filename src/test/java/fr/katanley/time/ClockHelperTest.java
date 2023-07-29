@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ClockHelperTest {
 
     @ParameterizedTest
-    @MethodSource("minutesToTextRow")
-    public void shouldBeAbleToGetTheSingleRowsProperly(LocalTime time, String textRepresentation){
+    @MethodSource("singleMinutesToTextRow")
+    public void shouldBeAbleToGetTheSingleMinuteRowsProperly(LocalTime time, String textRepresentation){
         //Given
         ClockHelper clockHelper = new ClockHelper();
 
@@ -24,7 +24,7 @@ class ClockHelperTest {
         assertEquals(textRepresentation, theSingleMinutesRow);
     }
 
-    private static Stream<Arguments> minutesToTextRow() {
+    private static Stream<Arguments> singleMinutesToTextRow() {
         return Stream.of(
             Arguments.arguments(LocalTime.of(0,0,0), "OOOO"),
             Arguments.arguments(LocalTime.of(23,59,59), "YYYY"),
@@ -33,4 +33,29 @@ class ClockHelperTest {
             Arguments.arguments(LocalTime.of(12,35,0), "OOOO")
         );
     }
+
+
+    @ParameterizedTest
+    @MethodSource("fiveMinutesToTextRow")
+    public void shouldBeAbleToGetTheFiveMinuteRowsProperly(LocalTime time, String textRepresentation){
+        //Given
+        ClockHelper clockHelper = new ClockHelper();
+
+        //When
+        String theFiveMinutesRow = clockHelper.getTheFiveMinutesRow(time);
+
+        //then
+        assertEquals(textRepresentation, theFiveMinutesRow);
+    }
+
+    private static Stream<Arguments> fiveMinutesToTextRow() {
+        return Stream.of(
+                Arguments.arguments(LocalTime.of(0,0,0), "OOOOOOOOOOO"),
+                Arguments.arguments(LocalTime.of(23,59,59), "YYRYYRYYRYY"),
+                Arguments.arguments(LocalTime.of(12,4,0), "OOOOOOOOOOO"),
+                Arguments.arguments(LocalTime.of(12,23,0), "YYRYOOOOOOO"),
+                Arguments.arguments(LocalTime.of(12,35,0), "YYRYYRYOOOO")
+        );
+    }
+
 }
