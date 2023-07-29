@@ -35,6 +35,14 @@ public class ClockHelper {
     }
 
     public String getTheSingleHoursRow(LocalTime time) {
-        return null;
+        int hour = time.getHour();
+        int i = hour % 5;
+        if(i == 0)
+            return "OOOO";
+        StringBuilder minutesRow;
+        minutesRow = new StringBuilder("R".repeat(i));
+        while(minutesRow.length() < 4)
+            minutesRow.append("O");
+        return minutesRow.toString();
     }
 }
