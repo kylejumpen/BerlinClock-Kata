@@ -52,9 +52,7 @@ public class ClockHelper {
         if(i == 0)
             return "OOOO";
         StringBuilder hoursRow = new StringBuilder();
-        for (int j = 1; j <= i; j++) {
-                hoursRow.append("R");
-        }
+        hoursRow.append("R".repeat(i));
         while(hoursRow.length() < 4)
             hoursRow.append("O");
         return hoursRow.toString();
