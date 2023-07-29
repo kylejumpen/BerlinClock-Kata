@@ -123,4 +123,26 @@ class ClockHelperTest {
                 Arguments.arguments(LocalTime.of(23,59,59), "O")
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("fillTimeToTextRepresentation")
+    public void shouldBeAbleToGetTheEntireBerlinClock(LocalTime time, String textRepresentation){
+        //Given
+        ClockHelper clockHelper = new ClockHelper();
+
+        //When
+        String theEntireClockRepresentation = clockHelper.getTheEntireClockRepresentation(time);
+
+        //then
+        assertEquals(textRepresentation, theEntireClockRepresentation);
+    }
+
+    private static Stream<Arguments> fillTimeToTextRepresentation() {
+        return Stream.of(
+                Arguments.arguments(LocalTime.of(0,0,0), "YOOOOOOOOOOOOOOOOOOOOOOO"),
+                Arguments.arguments(LocalTime.of(23,59,59), "ORRRRRRROYYRYYRYYRYYYYYY"),
+                Arguments.arguments(LocalTime.of(16,50,6), "YRRROROOOYYRYYRYYRYOOOOO"),
+                Arguments.arguments(LocalTime.of(11,37,1), "ORROOROOOYYRYYRYOOOOYYOO")
+        );
+    }
 }

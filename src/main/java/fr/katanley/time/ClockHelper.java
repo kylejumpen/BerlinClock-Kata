@@ -62,4 +62,8 @@ public class ClockHelper {
         int second = time.getSecond();
         return second % 2 == 0 ? "Y" : "O";
     }
+
+    public String getTheEntireClockRepresentation(LocalTime time) {
+        return null;
+    }
 }
