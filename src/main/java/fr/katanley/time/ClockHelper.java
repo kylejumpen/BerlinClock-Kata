@@ -9,6 +9,10 @@ public class ClockHelper {
         int i = minute % 5;
         if(i == 0)
             return "OOOO";
-        return null;
+        StringBuilder minutesRow;
+        minutesRow = new StringBuilder("Y".repeat(i));
+        while(minutesRow.length() < 4)
+            minutesRow.append("O");
+        return minutesRow.toString();
     }
 }
