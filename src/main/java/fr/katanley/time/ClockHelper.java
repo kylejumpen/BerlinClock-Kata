@@ -57,4 +57,8 @@ public class ClockHelper {
             hoursRow.append("O");
         return hoursRow.toString();
     }
+
+    public String getTheSecondsLamp(LocalTime time) {
+        return null;
+    }
 }

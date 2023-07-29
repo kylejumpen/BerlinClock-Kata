@@ -104,4 +104,23 @@ class ClockHelperTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("secondsToLamp")
+    public void shouldBeAbleToGetTheSecondLampProperly(LocalTime time, String textRepresentation){
+        //Given
+        ClockHelper clockHelper = new ClockHelper();
+
+        //When
+        String theSecondsLamp = clockHelper.getTheSecondsLamp(time);
+
+        //then
+        assertEquals(textRepresentation, theSecondsLamp);
+    }
+
+    private static Stream<Arguments> secondsToLamp() {
+        return Stream.of(
+                Arguments.arguments(LocalTime.of(0,0,0), "Y"),
+                Arguments.arguments(LocalTime.of(23,59,59), "O")
+        );
+    }
 }
