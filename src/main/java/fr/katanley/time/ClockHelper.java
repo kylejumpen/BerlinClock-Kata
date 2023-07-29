@@ -39,14 +39,24 @@ public class ClockHelper {
         int i = hour % 5;
         if(i == 0)
             return "OOOO";
-        StringBuilder minutesRow;
-        minutesRow = new StringBuilder("R".repeat(i));
-        while(minutesRow.length() < 4)
-            minutesRow.append("O");
-        return minutesRow.toString();
+        StringBuilder hoursRow;
+        hoursRow = new StringBuilder("R".repeat(i));
+        while(hoursRow.length() < 4)
+            hoursRow.append("O");
+        return hoursRow.toString();
     }
 
     public String getTheFiveHoursRow(LocalTime time) {
-        return null;
+        int hours = time.getHour();
+        int i = hours / 5;
+        if(i == 0)
+            return "OOOO";
+        StringBuilder hoursRow = new StringBuilder();
+        for (int j = 1; j <= i; j++) {
+                hoursRow.append("R");
+        }
+        while(hoursRow.length() < 4)
+            hoursRow.append("O");
+        return hoursRow.toString();
     }
 }
