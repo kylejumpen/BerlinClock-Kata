@@ -30,7 +30,7 @@ class ClockHelperTest {
             Arguments.arguments(LocalTime.of(23,59,59), "YYYY"),
             Arguments.arguments(LocalTime.of(12,32,0), "YYOO"),
             Arguments.arguments(LocalTime.of(12,34,0), "YYYY"),
-            Arguments.arguments(LocalTime.of(12,35,0), "0000")
+            Arguments.arguments(LocalTime.of(12,35,0), "OOOO")
         );
     }
 }
