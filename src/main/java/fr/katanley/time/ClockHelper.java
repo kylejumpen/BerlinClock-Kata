@@ -1,6 +1,8 @@
 package fr.katanley.time;
 
 import java.time.LocalTime;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static fr.katanley.time.Symbol.*;
 
@@ -15,7 +17,7 @@ public class ClockHelper {
         int minute = time.getMinute();
         int i = minute % 5;
         if (i == 0) {
-            return "OOOO";
+            return IntStream.range(0, SINGLE_MINUTES_ROW_LENGTH).mapToObj((id) -> NO_LIGHT_SYMBOL.toString()).collect(Collectors.joining());
         }
         StringBuilder minutesRow;
         minutesRow = new StringBuilder(YELLOW_LIGHT_SYMBOL.toString().repeat(i));
@@ -29,7 +31,7 @@ public class ClockHelper {
         int hour = time.getHour();
         int i = hour % 5;
         if (i == 0) {
-            return "OOOO";
+            return IntStream.range(0, SINGLE_HOURS_ROW_LENGTH).mapToObj((id) -> NO_LIGHT_SYMBOL.toString()).collect(Collectors.joining());
         }
         StringBuilder hoursRow;
         hoursRow = new StringBuilder(RED_LIGHT_SYMBOL.toString().repeat(i));
@@ -43,7 +45,7 @@ public class ClockHelper {
         int hours = time.getHour();
         int i = hours / 5;
         if (i == 0) {
-            return "OOOO";
+            return IntStream.range(0, FIVE_HOURS_ROWS_LENGTH).mapToObj((id) -> NO_LIGHT_SYMBOL.toString()).collect(Collectors.joining());
         }
         StringBuilder fiveHoursRow = new StringBuilder();
         fiveHoursRow.append(RED_LIGHT_SYMBOL.toString().repeat(i));
@@ -57,7 +59,7 @@ public class ClockHelper {
         int minute = time.getMinute();
         int i = minute / 5;
         if (i == 0) {
-            return "OOOOOOOOOOO";
+            return IntStream.range(0, FIVE_MINUTES_ROW_LENGTH).mapToObj((id) -> NO_LIGHT_SYMBOL.toString()).collect(Collectors.joining());
         }
         StringBuilder fiveMinutesRow = new StringBuilder();
         for (int j = 1; j <= i; j++) {
