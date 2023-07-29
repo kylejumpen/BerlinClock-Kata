@@ -45,4 +45,8 @@ public class ClockHelper {
             minutesRow.append("O");
         return minutesRow.toString();
     }
+
+    public String getTheFiveHoursRow(LocalTime time) {
+        return null;
+    }
 }

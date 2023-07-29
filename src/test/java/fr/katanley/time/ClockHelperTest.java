@@ -81,4 +81,27 @@ class ClockHelperTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("fiveHoursToTextRow")
+    public void shouldBeAbleToGetTheFiveHoursRowsProperly(LocalTime time, String textRepresentation){
+        //Given
+        ClockHelper clockHelper = new ClockHelper();
+
+        //When
+        String theSingleHoursRow = clockHelper.getTheFiveHoursRow(time);
+
+        //then
+        assertEquals(textRepresentation, theSingleHoursRow);
+    }
+
+    private static Stream<Arguments> fiveHoursToTextRow() {
+        return Stream.of(
+                Arguments.arguments(LocalTime.of(0,0,0), "OOOO"),
+                Arguments.arguments(LocalTime.of(23,59,59), "RRRR"),
+                Arguments.arguments(LocalTime.of(2,4,0), "OOOO"),
+                Arguments.arguments(LocalTime.of(8,23,0), "ROOO"),
+                Arguments.arguments(LocalTime.of(16,35,0), "RRRO")
+        );
+    }
+
 }
