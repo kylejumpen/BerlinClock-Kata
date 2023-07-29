@@ -59,6 +59,7 @@ public class ClockHelper {
     }
 
     public String getTheSecondsLamp(LocalTime time) {
-        return null;
+        int second = time.getSecond();
+        return second % 2 == 0 ? "Y" : "O";
     }
 }
