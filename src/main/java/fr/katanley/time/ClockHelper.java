@@ -2,7 +2,14 @@ package fr.katanley.time;
 
 import java.time.LocalTime;
 
+import static fr.katanley.time.Symbol.*;
+
 public class ClockHelper {
+
+    public static final int SINGLE_MINUTES_ROW_LENGTH = 4;
+    public static final int SINGLE_HOURS_ROW_LENGTH = 4;
+    public static final int FIVE_MINUTES_ROW_LENGTH = 11;
+    public static final int FIVE_HOURS_ROWS_LENGTH = 4;
 
     public String getTheSingleMinutesRow(LocalTime time) {
         int minute = time.getMinute();
@@ -10,27 +17,9 @@ public class ClockHelper {
         if (i == 0)
             return "OOOO";
         StringBuilder minutesRow;
-        minutesRow = new StringBuilder("Y".repeat(i));
-        while (minutesRow.length() < 4)
-            minutesRow.append("O");
-        return minutesRow.toString();
-    }
-
-    public String getTheFiveMinutesRow(LocalTime time) {
-        int minute = time.getMinute();
-        int i = minute / 5;
-        if (i == 0)
-            return "OOOOOOOOOOO";
-        StringBuilder minutesRow = new StringBuilder();
-        for (int j = 1; j <= i; j++) {
-            if (j % 3 == 0) {
-                minutesRow.append("R");
-            } else {
-                minutesRow.append("Y");
-            }
-        }
-        while (minutesRow.length() < 11)
-            minutesRow.append("O");
+        minutesRow = new StringBuilder(YELLOW_LIGHT_SYMBOL.toString().repeat(i));
+        while (minutesRow.length() < SINGLE_MINUTES_ROW_LENGTH)
+            minutesRow.append(NO_LIGHT_SYMBOL);
         return minutesRow.toString();
     }
 
@@ -40,9 +29,9 @@ public class ClockHelper {
         if (i == 0)
             return "OOOO";
         StringBuilder hoursRow;
-        hoursRow = new StringBuilder("R".repeat(i));
-        while (hoursRow.length() < 4)
-            hoursRow.append("O");
+        hoursRow = new StringBuilder(RED_LIGHT_SYMBOL.toString().repeat(i));
+        while (hoursRow.length() < SINGLE_HOURS_ROW_LENGTH)
+            hoursRow.append(NO_LIGHT_SYMBOL);
         return hoursRow.toString();
     }
 
@@ -51,16 +40,35 @@ public class ClockHelper {
         int i = hours / 5;
         if (i == 0)
             return "OOOO";
-        StringBuilder hoursRow = new StringBuilder();
-        hoursRow.append("R".repeat(i));
-        while (hoursRow.length() < 4)
-            hoursRow.append("O");
-        return hoursRow.toString();
+        StringBuilder fiveHoursRow = new StringBuilder();
+        fiveHoursRow.append(RED_LIGHT_SYMBOL.toString().repeat(i));
+        while (fiveHoursRow.length() < FIVE_HOURS_ROWS_LENGTH)
+            fiveHoursRow.append(NO_LIGHT_SYMBOL);
+        return fiveHoursRow.toString();
+    }
+
+    public String getTheFiveMinutesRow(LocalTime time) {
+        int minute = time.getMinute();
+        int i = minute / 5;
+        if (i == 0)
+            return "OOOOOOOOOOO";
+        StringBuilder fiveMinutesRow = new StringBuilder();
+        for (int j = 1; j <= i; j++) {
+            if (j % 3 == 0) {
+                fiveMinutesRow.append(RED_LIGHT_SYMBOL);
+            } else {
+                fiveMinutesRow.append(YELLOW_LIGHT_SYMBOL);
+            }
+        }
+        while (fiveMinutesRow.length() < FIVE_MINUTES_ROW_LENGTH)
+            fiveMinutesRow.append(NO_LIGHT_SYMBOL);
+        return fiveMinutesRow.toString();
     }
 
     public String getTheSecondsLamp(LocalTime time) {
         int second = time.getSecond();
-        return second % 2 == 0 ? "Y" : "O";
+        if (second % 2 == 0) return YELLOW_LIGHT_SYMBOL.toString();
+        return NO_LIGHT_SYMBOL.toString();
     }
 
     public String getTheEntireClockRepresentation(LocalTime time) {
