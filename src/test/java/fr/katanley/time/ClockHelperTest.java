@@ -58,4 +58,27 @@ class ClockHelperTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("singleHoursToTextRow")
+    public void shouldBeAbleToGetTheSingleHoursRowsProperly(LocalTime time, String textRepresentation){
+        //Given
+        ClockHelper clockHelper = new ClockHelper();
+
+        //When
+        String theSingleHoursRow = clockHelper.getTheSingleHoursRow(time);
+
+        //then
+        assertEquals(textRepresentation, theSingleHoursRow);
+    }
+
+    private static Stream<Arguments> singleHoursToTextRow() {
+        return Stream.of(
+                Arguments.arguments(LocalTime.of(0,0,0), "OOOO"),
+                Arguments.arguments(LocalTime.of(23,59,59), "RRRO"),
+                Arguments.arguments(LocalTime.of(2,4,0), "RROO"),
+                Arguments.arguments(LocalTime.of(8,23,0), "RRRO"),
+                Arguments.arguments(LocalTime.of(14,35,0), "RRRR")
+        );
+    }
+
 }
