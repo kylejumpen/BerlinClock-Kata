@@ -61,17 +61,22 @@ public class ClockHelper {
         if (i == 0) {
             return IntStream.range(0, FIVE_MINUTES_ROW_LENGTH).mapToObj((id) -> NO_LIGHT_SYMBOL.toString()).collect(Collectors.joining());
         }
+        StringBuilder fiveMinutesRow = this.fillTheFiveMinuteRow(i);
+        while (fiveMinutesRow.length() < FIVE_MINUTES_ROW_LENGTH)
+            fiveMinutesRow.append(NO_LIGHT_SYMBOL);
+        return fiveMinutesRow.toString();
+    }
+
+    private StringBuilder fillTheFiveMinuteRow(int quotient){
         StringBuilder fiveMinutesRow = new StringBuilder();
-        for (int j = 1; j <= i; j++) {
+        for (int j = 1; j <= quotient; j++) {
             if (j % 3 == 0) {
                 fiveMinutesRow.append(RED_LIGHT_SYMBOL);
             } else {
                 fiveMinutesRow.append(YELLOW_LIGHT_SYMBOL);
             }
         }
-        while (fiveMinutesRow.length() < FIVE_MINUTES_ROW_LENGTH)
-            fiveMinutesRow.append(NO_LIGHT_SYMBOL);
-        return fiveMinutesRow.toString();
+        return fiveMinutesRow;
     }
 
     public String getTheSecondsLamp(LocalTime time) {
