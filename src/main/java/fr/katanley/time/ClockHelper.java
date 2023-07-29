@@ -14,44 +14,51 @@ public class ClockHelper {
     public String getTheSingleMinutesRow(LocalTime time) {
         int minute = time.getMinute();
         int i = minute % 5;
-        if (i == 0)
+        if (i == 0) {
             return "OOOO";
+        }
         StringBuilder minutesRow;
         minutesRow = new StringBuilder(YELLOW_LIGHT_SYMBOL.toString().repeat(i));
-        while (minutesRow.length() < SINGLE_MINUTES_ROW_LENGTH)
+        while (minutesRow.length() < SINGLE_MINUTES_ROW_LENGTH) {
             minutesRow.append(NO_LIGHT_SYMBOL);
+        }
         return minutesRow.toString();
     }
 
     public String getTheSingleHoursRow(LocalTime time) {
         int hour = time.getHour();
         int i = hour % 5;
-        if (i == 0)
+        if (i == 0) {
             return "OOOO";
+        }
         StringBuilder hoursRow;
         hoursRow = new StringBuilder(RED_LIGHT_SYMBOL.toString().repeat(i));
-        while (hoursRow.length() < SINGLE_HOURS_ROW_LENGTH)
+        while (hoursRow.length() < SINGLE_HOURS_ROW_LENGTH) {
             hoursRow.append(NO_LIGHT_SYMBOL);
+        }
         return hoursRow.toString();
     }
 
     public String getTheFiveHoursRow(LocalTime time) {
         int hours = time.getHour();
         int i = hours / 5;
-        if (i == 0)
+        if (i == 0) {
             return "OOOO";
+        }
         StringBuilder fiveHoursRow = new StringBuilder();
         fiveHoursRow.append(RED_LIGHT_SYMBOL.toString().repeat(i));
-        while (fiveHoursRow.length() < FIVE_HOURS_ROWS_LENGTH)
+        while (fiveHoursRow.length() < FIVE_HOURS_ROWS_LENGTH) {
             fiveHoursRow.append(NO_LIGHT_SYMBOL);
+        }
         return fiveHoursRow.toString();
     }
 
     public String getTheFiveMinutesRow(LocalTime time) {
         int minute = time.getMinute();
         int i = minute / 5;
-        if (i == 0)
+        if (i == 0) {
             return "OOOOOOOOOOO";
+        }
         StringBuilder fiveMinutesRow = new StringBuilder();
         for (int j = 1; j <= i; j++) {
             if (j % 3 == 0) {
@@ -67,7 +74,9 @@ public class ClockHelper {
 
     public String getTheSecondsLamp(LocalTime time) {
         int second = time.getSecond();
-        if (second % 2 == 0) return YELLOW_LIGHT_SYMBOL.toString();
+        if (second % 2 == 0) {
+            return YELLOW_LIGHT_SYMBOL.toString();
+        }
         return NO_LIGHT_SYMBOL.toString();
     }
 
