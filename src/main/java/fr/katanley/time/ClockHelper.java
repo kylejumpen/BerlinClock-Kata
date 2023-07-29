@@ -17,7 +17,20 @@ public class ClockHelper {
     }
 
     public String getTheFiveMinutesRow(LocalTime time) {
-
-        return null;
+        int minute = time.getMinute();
+        int i = minute / 5;
+        if(i == 0)
+            return "OOOOOOOOOOO";
+        StringBuilder minutesRow = new StringBuilder();
+        for (int j = 1; j <= i; j++) {
+            if(j % 3 == 0) {
+                minutesRow.append("R");
+            }else{
+                minutesRow.append("Y");
+            }
+        }
+        while(minutesRow.length() < 11)
+            minutesRow.append("O");
+        return minutesRow.toString();
     }
 }
