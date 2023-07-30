@@ -6,6 +6,10 @@ import java.util.stream.IntStream;
 
 import static fr.katanley.time.Symbol.*;
 
+/**
+ * Here is the class that helps to convert a given time into the BerlinClock Representation
+ * @author kaflamalice
+ */
 public class ClockHelper {
 
     public static final int SINGLE_MINUTES_ROW_LENGTH = 4;
@@ -13,6 +17,12 @@ public class ClockHelper {
     public static final int FIVE_MINUTES_ROW_LENGTH = 11;
     public static final int FIVE_HOURS_ROWS_LENGTH = 4;
 
+    /**
+     *
+     * @param time is the time that we want to convert
+     * @return the single minute Row of the Berlin Clock, see
+     * @see fr.katanley.time.Symbol to change Light Symbol
+     */
     public String getTheSingleMinutesRow(LocalTime time) {
         int minute = time.getMinute();
         int i = minute % 5;
