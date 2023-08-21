@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-type TimeDisplayerProps = {
-    time: string;
-  };
+const TimeDisplayer = () => {
 
-const TimeDisplayer = ({ time } : TimeDisplayerProps) => <div> Current Time is {time} </div>;
+    let dateTime = new Date();
+    const [time, setTime] = useState(dateTime);
+    setInterval(() => {
+        setTime(new Date());
+      }, 500);
+
+    return <div> Current Time is {time.toLocaleTimeString()} </div>
+};
 
 export default TimeDisplayer;
