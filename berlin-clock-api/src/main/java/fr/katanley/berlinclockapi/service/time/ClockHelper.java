@@ -1,5 +1,7 @@
 package fr.katanley.berlinclockapi.service.time;
 
+import org.springframework.stereotype.Service;
+
 import java.time.LocalTime;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,6 +13,7 @@ import static fr.katanley.berlinclockapi.service.time.Symbol.*;
  * Here is the class that helps to convert a given time into the BerlinClock Representation
  * @author kaflamalice
  */
+@Service
 public class ClockHelper {
 
     public static final int SINGLE_MINUTES_ROW_LENGTH = 4;

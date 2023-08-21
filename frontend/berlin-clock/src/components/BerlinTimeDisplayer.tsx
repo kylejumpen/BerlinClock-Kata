@@ -14,7 +14,7 @@ const BerlinTimeDisplayer = () => {
             setTime("Error While Connecting to Api")
         })
         
-      }, 500);
+      }, 5000);
 
     return <div> Berlin Time Equivalent is {time} </div>
 };
